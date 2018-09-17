@@ -1,4 +1,20 @@
 ﻿  Source.cpp
-c:\users\oscar\source\repos\1st day hw\1st day hw\source.cpp(11): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
-c:\users\oscar\source\repos\1st day hw\1st day hw\source.cpp(146): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
-  1st day HW.vcxproj -> c:\users\oscar\source\repos\1st day HW\Debug\1st day HW.exe
+e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(11): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(208): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(202): note: durante la compilación de la función miembro de plantilla clase de 'int vec3<int>::distance_to(const vec3<int> &)'
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(274): note: vea la referencia a la creación de instancias de plantilla de función 'int vec3<int>::distance_to(const vec3<int> &)' que se está compilando
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(215): note: vea la referencia a la creación de instancias de plantilla clase de 'vec3<int>' que se está compilando
+e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(157): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(149): note: durante la compilación de la función miembro de plantilla clase de 'int vec3<int>::min_value(void)'
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(166): note: vea la referencia a la creación de instancias de plantilla de función 'int vec3<int>::min_value(void)' que se está compilando
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(55): note: durante la compilación de la función miembro de plantilla clase de 'vec3<int>::vec3(t,t,t)'
+          with
+          [
+              t=int
+          ]
+  e:\universidad\2o 2o\develoment\1st day hw\1st day hw\source.cpp(215): note: vea la referencia a la creación de instancias de plantilla de función 'vec3<int>::vec3(t,t,t)' que se está compilando
+          with
+          [
+              t=int
+          ]
+  1st day HW.vcxproj -> E:\UNIVERSIDAD\2o 2o\Develoment\1st day HW\Debug\1st day HW.exe
