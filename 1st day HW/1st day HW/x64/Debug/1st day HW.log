@@ -1,0 +1,7 @@
+﻿  Source.cpp
+y:\users\oscaric1\downloads\develop\-1st-day-hw-master\1st day hw\1st day hw\source.cpp(185): warning C4305: 'argumento': truncamiento de 'double' a 'const float'
+y:\users\oscaric1\downloads\develop\-1st-day-hw-master\1st day hw\1st day hw\source.cpp(125): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  y:\users\oscaric1\downloads\develop\-1st-day-hw-master\1st day hw\1st day hw\source.cpp(123): note: durante la compilación de la función miembro de plantilla clase de 'vec3<float> vec3<float>::normalize(void)'
+  y:\users\oscaric1\downloads\develop\-1st-day-hw-master\1st day hw\1st day hw\source.cpp(190): note: vea la referencia a la creación de instancias de plantilla de función 'vec3<float> vec3<float>::normalize(void)' que se está compilando
+  y:\users\oscaric1\downloads\develop\-1st-day-hw-master\1st day hw\1st day hw\source.cpp(185): note: vea la referencia a la creación de instancias de plantilla clase de 'vec3<float>' que se está compilando
+  1st day HW.vcxproj -> Y:\Users\oscaric1\Downloads\Develop\-1st-day-HW-master\1st day HW\x64\Debug\1st day HW.exe

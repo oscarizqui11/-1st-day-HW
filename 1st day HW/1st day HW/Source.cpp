@@ -1,21 +1,7 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
-double sqroot(int b) {
-
-	double res;
-	int r;
-
-	for (res = b; res > 0; res--) {
-		
-		r = res;
-
-		if (b % r == 0)
-			break;
-	}
-
-	return res;
-};
 
 template <class t>
 class vec3 {
@@ -24,23 +10,21 @@ public:
 
 public:
 	vec3();
-	vec3(t, t, t);
+	vec3(const t& a, const t& b, const t& c);
 	vec3(const vec3 &v2);
 
-	t min_value();
-
-	vec3 operator+(const vec3& b);
-	vec3 operator-(const vec3& b);
+	vec3 operator+(const vec3& b)const;
+	vec3 operator-(const vec3& b)const;
 	vec3 operator+=(const vec3& b);
 	vec3 operator-=(const vec3& b);
 	vec3 operator=(const vec3& b);
-	int operator==(const vec3& b);
+	bool operator==(const vec3& b)const;
 	vec3 operator/=(int b);
 
 	vec3 normalize();
-	vec3 zero();
-	int is_zero();
-	t distance_to(const vec3& b);
+	void zero();
+	bool is_zero()const;
+	t distance_to(const vec3& b)const;
 
 };
 
@@ -52,7 +36,7 @@ vec3<t>::vec3() {
 }
 
 template <class t>
-vec3<t>::vec3(t a, t b, t c) {
+vec3<t>::vec3(const t& a, const t& b, const t& c) {
 	x = a;
 	y = b;
 	z = c;
@@ -67,23 +51,23 @@ vec3<t>::vec3(const vec3 &v2) {
 
 
 template <class t>
-vec3<t> vec3<t>::operator+(const vec3& b) {
+vec3<t> vec3<t>::operator+(const vec3& b)const {
 	vec3 vecr;
 
-	vecr.x = this->x + b.x;
-	vecr.y = this->y + b.y;
-	vecr.z = this->z + b.z;
+	vecr.x = x + b.x;
+	vecr.y = y + b.y;
+	vecr.z = z + b.z;
 
 	return vecr;
 }
 
 template <class t>
-vec3<t> vec3<t>::operator-(const vec3& b) {
+vec3<t> vec3<t>::operator-(const vec3& b)const {
 	vec3 vecr;
 
-	vecr.x = this->x - b.x;
-	vecr.y = this->y - b.y;
-	vecr.z = this->z - b.z;
+	vecr.x = x - b.x;
+	vecr.y = y - b.y;
+	vecr.z = z - b.z;
 		
 	return vecr;
 }
@@ -91,123 +75,73 @@ vec3<t> vec3<t>::operator-(const vec3& b) {
 template <class t>
 vec3<t> vec3<t>::operator+=(const vec3& b) {
 	
-	this->x += b.x;
-	this->y += b.y;
-	this->z += b.z;
+	x += b.x;
+	y += b.y;
+	z += b.z;
 
-	vec3 vecr(this->x, this->y, this->z);
-
-	return vecr;
+	return *this;
 }
 
 template <class t>
 vec3<t> vec3<t>::operator-=(const vec3& b) {
 
-	this->x -= b.x;
-	this->y -= b.y;
-	this->z -= b.z;
+	x -= b.x;
+	y -= b.y;
+	z -= b.z;
 
-	vec3 vecr(this->x, this->y, this->z);
-
-	return vecr;
+	return *this;
 }
 
 template <class t>
 vec3<t> vec3<t>::operator=(const vec3& b) {
 
-	this->x = b.x;
-	this->y = b.y;
-	this->z = b.z;
+	x = b.x;
+	y = b.y;
+	z = b.z;
 
-	vec3 vecr(this->x, this->y, this->z);
-
-	return vecr;
+	return *this;
 }
 
 template <class t>
-int vec3<t>::operator==(const vec3& b) {
+bool vec3<t>::operator==(const vec3& b)const {
 
-	if (this->x == b.x && this->y == b.y && this->z == b.z)
-		return 1;
-
-	else return 0;
+	return (x == b.x && y == b.y && z == b.z);
 }
+
 
 template <class t>
 vec3<t> vec3<t>::operator/=(int b) {
 
-	vec3 vecr;
-
-	vecr.x = this->x / b;
-	vecr.y = this->y / b;
-	vecr.z = this->z / b;
+	x /= b;
+	y /= b;
+	z /= b;
 	
-	return vecr;
-}
-
-template <class t>
-t vec3<t>::min_value() {
-
-	vec3 b(this->x, this->y, this->z);
-
-	t min = b.x;
-
-	if (min < b.y)
-		min = b.y;
-	else if (min < b.z);
-		min = b.z;
-
-	return min;
+	return *this;
 }
 
 template <class t>
 vec3<t> vec3<t>::normalize() {
-	vec3 vecr(this->x, this->y, this->z);
-	int	min = vecr.min_value();
 
-	while (min > 0) {
-
-		if ((vecr.x % min) == 0 && (vecr.y % min) == 0 && (vecr.z % min) == 0) {
-
-			vecr.x /= min;
-			vecr.y /= min;
-			vecr.z /= min;
-		}
-		min--;
-	}
-
-	return vecr;
+	return (*this /= (sqrt(x * x + y * y + z * z)));
 }
 
 template <class t>
-vec3<t> vec3<t>::zero() {
+void vec3<t>::zero() {
 	
-	vec3 vec0;
-	return vec0;
+	x = 0; y = 0; z = 0;
 }
 
 template <class t>
-int vec3<t>::is_zero() {
-	int res = 0;
-	vec3 vecr(this->x, this->y, this->z);
-	vec3 zero;
+bool vec3<t>::is_zero()const {
 
-	if (vecr == zero)
-		res = 1;
-
-	return res;
+	return (x == 0 && y == 0 && z == 0);
 }
 
+
 template <class t>
-t vec3<t>::distance_to(const vec3& b) {
+t vec3<t>::distance_to(const vec3& b)const {
 
-	vec3 a(this->x, this->y, this->z);
-
-	t distance;
-
-	distance = sqroot((b.x - a.x) + (b.y - a.y) + (b.z - a.z));
-
-	return distance;
+	return sqrt((b.x - x) + (b.y - y) + (b.z - z));
 }
 
 int main() {
@@ -248,30 +182,30 @@ int main() {
 	cout << "Comp2 = " << comp2 << endl << endl;
 
 
-	vec3 <int> vecd(24234, 234, 4456);
-
-	vec3 <int> vecn = vecd.normalize();
-	
+	vec3 <float> vecd(242.34, 23.4, 4.456);
 	cout << "Vecd.x = " << vecd.x << endl << endl;
 	cout << "Vecd.y = " << vecd.y << endl << endl;
 	cout << "Vecd.z = " << vecd.z << endl << endl;
 
-	cout << "Vecd.x normalized = " << vecn.x << endl << endl;
-	cout << "Vecd.y normalized = " << vecn.y << endl << endl;
-	cout << "Vecd.z normalized = " << vecn.z << endl << endl;
+	vecd.normalize();
+	cout << "Vecd.x Normalize = " << vecd.x << endl << endl;
+	cout << "Vecd.y Normalize = " << vecd.y << endl << endl;
+	cout << "Vecd.z Normalize = " << vecd.z << endl << endl;
 
-	vec3 <int> vec0 = vec0.zero();
+	vec3 <int> vec0 (69, 48, 86);
+	vec0.zero();
 
 	cout << "Vec0.x = " << vec0.x << endl << endl;
 	cout << "Vec0.y = " << vec0.y << endl << endl;
 	cout << "Vec0.z = " << vec0.z << endl << endl;
 
 	cout << "Is Vec0 == 0?: " << vec0.is_zero() << endl << endl;
-	cout << "Is Vecd == 0?: " << vecd.is_zero() << endl << endl;  
+	cout << "Is Vecd == 0?: " << vecc.is_zero() << endl << endl;  
 
-	vec3 <int >vecf(2, 2, 2);
+	vec3 <float>vecf(2.0, 2.0, 2.0);
+	vec3 <float>vecg(4.0, 4.0, 4.0);
 
-	cout << "Distance from Veca to Vecf =  " << veca.distance_to(vecf) << endl << endl;
+	cout << "Distance from Veca to Vecf =  " << vecf.distance_to(vecg) << endl << endl;
 
 	return 0;
 }
